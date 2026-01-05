@@ -49,7 +49,7 @@ class Seq2Seq(nn.Module):
         return torch.cat(output,dim=1)
 # ---------------------------------------------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-checkpoint = torch.load(r"models\bot_checkpoint.pth", map_location=device)
+checkpoint = torch.load("models/bot_checkpoint.pth", map_location=device)
 vocab = checkpoint["vocab"]
 vocab_length=len(vocab)
 enc = encoder(vocab_size=vocab_length)
@@ -130,4 +130,5 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         response = st.write_stream(response_generator(prompt))
     st.session_state.messages.append({"role": "assistant", "content": response})
+
 # -------------------------------------------------------
