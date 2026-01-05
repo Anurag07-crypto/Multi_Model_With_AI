@@ -49,7 +49,7 @@ val_transform = transforms.Compose([
 num_classes = 38
 def predict(image_path):
     pred_model = cnn_model(num_classes)
-    state_dict = torch.load(r"models\plant_leaf_classification.pth", map_location="cpu")
+    state_dict = torch.load("models/plant_leaf_classification.pth", map_location="cpu")
     pred_model.load_state_dict(state_dict)
     pred_model.eval()
     image = Image.open(image_path).convert("RGB")
@@ -65,4 +65,5 @@ def predict(image_path):
 uploaded_image = st.file_uploader("Upload image")
 if uploaded_image is not None:
     predict(uploaded_image)
+
     
