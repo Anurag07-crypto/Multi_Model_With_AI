@@ -83,7 +83,7 @@ class_names = [
 
 def predict(image_path):
     pred_model = MyCnn_model(len(class_names))
-    state_dict = torch.load(r"models\Indian_Bird_Indentifier_model.pth", map_location="cpu")
+    state_dict = torch.load("models/Indian_Bird_Indentifier_model.pth", map_location="cpu")
     pred_model.load_state_dict(state_dict)
     pred_model.eval()
     image = Image.open(image_path).convert("RGB")
@@ -99,4 +99,5 @@ def predict(image_path):
 uploaded_image = st.file_uploader("Upload image")
 if uploaded_image is not None:
     predict(uploaded_image)
+
     
